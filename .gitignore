@@ -2,3 +2,4 @@
 .env
 .yarn-integrity
 .DS_Store
+vendme.db3

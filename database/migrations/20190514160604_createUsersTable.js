@@ -7,7 +7,8 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     users.string('password', 128).notNullable();
-    users.string('account_type', 128)
+    users.string('account_type', 128);
+    users.string('googleId', 24);
   });
 };
 
