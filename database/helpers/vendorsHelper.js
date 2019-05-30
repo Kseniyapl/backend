@@ -19,8 +19,8 @@ function getVendorById(id) {
 function addVendor(data, userId) {
   return db('vendors').insert({...data, market_id:userId}, ['id'])
 }
-function editVendor(id, data, userId) {
-  if (userId == id)
+function editVendor(id, data) {
+  if (data.id == id)
   return db('vendors')
     .where({ id })
     .update({ ...data }, ['id'])
