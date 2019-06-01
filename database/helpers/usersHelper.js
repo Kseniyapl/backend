@@ -5,7 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  findByAccountType
+  findByAccountType,
+  deleteUser
 };
 
 function find() {
@@ -29,4 +30,9 @@ function findById(id) {
 }
 function findByAccountType(account_type) {
 	return db('users').where({ account_type });
+}
+function deleteUser(id) {
+  return db('users')
+    .where({ id })
+    .del()
 }

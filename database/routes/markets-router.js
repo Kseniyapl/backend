@@ -33,5 +33,50 @@ router.get('/:id/stalls', async (req, res) => {
     res.status(500).json({ error })
   }
 })
-//router.get('/:id', async (req, res) => {})
+
+router.post('/', async (req, res) => {
+  try {
+    const market = await Markets.addMarket(req.body);
+    res.status(201).json(market);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: 'Error adding the market',
+    });
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const count = await Markets.deleteMarket(req.params.id);
+    if (count > 0) {
+      res.status(200).json({ message: 'The market has been deleted' });
+    } else {
+      res.status(404).json({ message: 'The market could not be found' });
+    }
+  } catch (error) {
+    // log error to database
+    console.log(error);
+    res.status(500).json({
+      message: 'Error removing the market',
+    });
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  try {
+    const market = await Markets.editMarket(req.params.id, req.body);
+    if (market) {
+      res.status(200).json(market);
+    } else {
+      res.status(404).json({ message: 'The market could not be found' });
+    }
+  } catch (error) {
+    // log error to database
+    console.log(error);
+    res.status(500).json({
+      message: 'Error updating the market',
+    });
+  }
+})
 module.exports = router

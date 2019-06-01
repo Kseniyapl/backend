@@ -23,12 +23,11 @@ function getMarketById(id) {
 function addMarket(data) {
   return db('markets').insert(data, ['id'])
 }
-function editMarket(id, data, userId) {
-  if (userId == id)
+function editMarket(id, data) {
+
     return db('markets')
       .where({ id })
       .update({ ...data }, ['id'])
-  else return null
 }
 function deleteMarket(id) {
   return db('markets')
