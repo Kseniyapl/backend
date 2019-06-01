@@ -67,4 +67,16 @@ router.put('/:id', async (req, res) => {
     });
   }
 })
+
+router.get('/:id/stalls', async (req, res) => {
+  const { id } = req.params
+  try {
+    const vendor = await Vendors.getStallsByVendorId(id)
+    vendor
+      ? res.status(200).json(vendor)
+      : res.status(404).json({ error: 'Stalls in this vnedor are not found' })
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+})
 module.exports = router

@@ -17,7 +17,7 @@ server.use('/api/users', usersRouter)
 server.use('/api/vendor', vendorRouter)
 server.use('/api/market', marketRouter)
 server.use('/api/stalls', stallRouter)
-server.use('/', authRouter)
+server.use('/auth', authRouter)
 //server.use('/', usersRouter)
 
 server.get("/", (req, res) => {

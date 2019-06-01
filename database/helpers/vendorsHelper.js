@@ -4,7 +4,8 @@ module.exports = {
   getVendorById,
   addVendor,
   editVendor,
-  deleteVendor
+  deleteVendor,
+  getStallsByVendorId
 }
 
 function getVendors() {
@@ -28,4 +29,8 @@ function deleteVendor(id) {
   return db('vendors')
     .where({ id })
     .del()
+}
+function getStallsByVendorId(vendor_id) {
+  return db('stalls')
+    .where({ vendor_id })
 }
